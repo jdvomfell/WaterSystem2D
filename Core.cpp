@@ -16,7 +16,6 @@ int main()
 	float dt;
 
 	sf::Event event;
-
 	sf::Vector2f clickPos;
 
 	/* Water Stuff */
@@ -27,9 +26,6 @@ int main()
 	Water * splashWater;
 
 	bool needToRelease = false;
-
-	float waterSpikeTime = 0;
-	bool waterSpike = false;
 
 	window.setKeyRepeatEnabled(false);
 
@@ -67,7 +63,6 @@ int main()
 			}
 		}
 
-		//UPDATE
 		delta = clock.getElapsedTime();
 		clock.restart();
 		dt = delta.asSeconds();
@@ -75,20 +70,7 @@ int main()
 		//Rising Water Levels
 		water->adjustWaterLevel(0.5f);
 
-		/*waterSpikeTime += dt;
-		if (waterSpikeTime > 5) {
-			waterSpike = !waterSpike;
-			waterSpikeTime = 0;
-		}
-
-		if (waterSpike) {
-			water->splash(25, -30);
-		}*/
-
-
 		waterHandler.update(dt);
-
-		//RENDER
 		window.clear(sf::Color::White);
 
 		waterHandler.draw(&window);
