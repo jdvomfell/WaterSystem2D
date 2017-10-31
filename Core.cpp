@@ -17,6 +17,9 @@ int main()
 
 	sf::Event event;
 	sf::Vector2f clickPos;
+	sf::Color surface;
+	sf::Color floor;
+	int colorCount = 0;
 
 	/* Water Stuff */
 
@@ -63,15 +66,34 @@ int main()
 			}
 		}
 
+		if ((colorCount++) > 5) {
+			surface.r = (surface.r + 1) % 255;
+			surface.b = (surface.b + 2) % 255;
+			surface.g = (surface.g + 3) % 255;
+
+			floor.r = floor.r - 7;
+			floor.b = floor.b - 6;
+			floor.g = floor.g - 5;
+
+			if (floor.r < 255) floor.r += 255;
+			if (floor.g < 255) floor.r += 255;
+			if (floor.b < 255) floor.r += 255;
+
+			water->setColor(WATER_SURFACE, surface);
+			water->setColor(WATER_FLOOR, floor);
+			
+			colorCount = 0;
+		}
+
 		delta = clock.getElapsedTime();
 		clock.restart();
 		dt = delta.asSeconds();
 
 		//Rising Water Levels
-		water->adjustWaterLevel(0.5f);
+		//water->adjustWaterLevel(0.5f);
 
 		waterHandler.update(dt);
-		window.clear(sf::Color::White);
+		window.clear(sf::Color::Black);
 
 		waterHandler.draw(&window);
 

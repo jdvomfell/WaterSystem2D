@@ -85,6 +85,17 @@ void Water::draw(sf::RenderWindow * window) {
 
 }
 
+void Water::setColor(WaterLayer waterLayer, sf::Color color) {
+	
+	for (int i = 0; i < springs.size(); i++) {
+		if (waterLayer == WATER_SURFACE)
+			waterShape[i * 2].color = color;
+		else if(waterLayer == WATER_FLOOR)
+			waterShape[i * 2 + 1].color = color;
+	}
+
+}
+
 void Water::splash(float x, float velocity) {
 
 	int index = (int)(x - topLeft.x) / PIXELS_PER_SPRING;

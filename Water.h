@@ -29,6 +29,11 @@ class Spring {
 
 };
 
+const enum WaterLayer {
+	WATER_SURFACE,
+	WATER_FLOOR
+};
+
 // Desc: Represents a group of springs that mimic a water like effect in a rectangular area
 //		topLeft: Vector containing the top left coordinates for the water body
 //		bottomRight: Vector containing the bottom right coordinates for the water body
@@ -56,8 +61,10 @@ class Water {
 
 public:
 
+	void setColor(WaterLayer, sf::Color);
 	void splash(float x, float velocity);
 	void adjustWaterLevel(float amount);
+
 	void draw(sf::RenderWindow * window);
 
 };
